@@ -70,6 +70,8 @@ class BackstagePasses extends BaseItem {
       return -2;
     } else if (this.sell_in > 0) {
       return -3;
+    } else {
+      return this.quality;
     }
   }
 }
