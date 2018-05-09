@@ -14,6 +14,10 @@ class BaseItem extends Item {
     this.sell_in = this.calculateSellIn();
   }
 
+  qualityDegradeFactor() {
+    return 1;
+  }
+
   calculateQuality() {
     let quality = this.quality - this.degradeFactor;
 
@@ -30,10 +34,6 @@ class BaseItem extends Item {
 
   calculateSellIn() {
     return this.sell_in - 1;
-  }
-
-  qualityDegradeFactor() {
-    return 1;
   }
 }
 
@@ -56,9 +56,9 @@ class AgedBrie extends BaseItem {
   qualityDegradeFactor() {
     if (this.sell_in > 0) {
       return -1;
-    } else {
-      return -2;
     }
+
+    return -2;
   }
 }
 
@@ -66,13 +66,16 @@ class BackstagePasses extends BaseItem {
   qualityDegradeFactor() {
     if (this.sell_in > 10) {
       return -1;
-    } else if (this.sell_in > 5) {
-      return -2;
-    } else if (this.sell_in > 0) {
-      return -3;
-    } else {
-      return this.quality;
     }
+
+    if (this.sell_in > 5) {
+      return -2;
+    }
+    if (this.sell_in > 0) {
+      return -3;
+    }
+
+    return this.quality;
   }
 }
 
