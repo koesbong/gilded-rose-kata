@@ -9,6 +9,14 @@ describe('Gilded Rose', function() {
     item.update();
     expect(item.sell_in).toEqual(1);
     expect(item.quality).toEqual(2);
+
+    item = new ConjuredManaCake('Conjured Mana Cake', 1, 1);
+    expect(item.sell_in).toEqual(0);
+    expect(item.quality).toEqual(0);
+
+    item.update();
+    expect(item.sell_in).toEqual(-1);
+    expect(item.quality).toEqual(0);
   });
 
   it('should update Sulfuras', function() {

@@ -9,12 +9,12 @@ function Item(name, sell_in, quality) {
 
 class BaseItem extends Item {
   update() {
-    this.getDegradeFactor();
-    this.updateQuality();
-    this.updateSellIn();
+    this.degradeFactor = this.qualityDegradeFactor();
+    this.quality = this.calculateQuality();
+    this.sell_in = this.calculateSellIn();
   }
 
-  updateQuality() {
+  calculateQuality() {
     let quality = this.quality - this.degradeFactor;
 
     if (quality < 0) {
@@ -25,47 +25,51 @@ class BaseItem extends Item {
       quality = 50;
     }
 
-    this.quality = quality;
+    return quality;
   }
 
-  updateSellIn() {
-    this.sell_in = this.sell_in - 1;
+  calculateSellIn() {
+    return this.sell_in - 1;
   }
 
-  getDegradeFactor() {
-    this.degradeFactor = 1;
+  qualityDegradeFactor() {
+    return 1;
   }
 }
 
 class Sulfuras extends BaseItem {
-  updateQuality() {}
-  updateSellIn() {}
+  qualityDegradeFactor() {
+    return 0;
+  }
+  calculateSellIn() {
+    return this.sell_in;
+  }
 }
 
 class ConjuredManaCake extends BaseItem {
-  getDegradeFactor() {
-    this.degradeFactor = 2;
+  qualityDegradeFactor() {
+    return 2;
   }
 }
 
 class AgedBrie extends BaseItem {
-  getDegradeFactor() {
+  qualityDegradeFactor() {
     if (this.sell_in > 0) {
-      this.degradeFactor = -1;
+      return -1;
     } else {
-      this.degradeFactor = -2;
+      return -2;
     }
   }
 }
 
 class BackstagePasses extends BaseItem {
-  getDegradeFactor() {
+  qualityDegradeFactor() {
     if (this.sell_in > 10) {
-      this.degradeFactor = -1;
+      return -1;
     } else if (this.sell_in > 5) {
-      this.degradeFactor = -2;
+      return -2;
     } else if (this.sell_in > 0) {
-      this.degradeFactor = -3;
+      return -3;
     }
   }
 }
