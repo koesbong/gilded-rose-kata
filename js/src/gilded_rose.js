@@ -49,20 +49,6 @@ class ConjuredManaCake extends BaseItem {
 }
 
 class AgedBrie extends BaseItem {
-  // updateQuality() {
-  //   let quality;
-  //
-  //   if (this.sell_in > 0) {
-  //     quality = this.quality + 1;
-  //   } else {
-  //     quality = this.quality + 2;
-  //   }
-  //
-  //   if (quality <= 50) {
-  //     this.quality = quality;
-  //   }
-  // }
-
   getDegradeFactor() {
     if (this.sell_in > 0) {
       this.degradeFactor = -1;
