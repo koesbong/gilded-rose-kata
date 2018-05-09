@@ -38,8 +38,8 @@ class BaseItem extends Item {
 }
 
 class Sulfuras extends BaseItem {
-  qualityDegradeFactor() {
-    return 0;
+  calculateQuality() {
+    return this.quality;
   }
   calculateSellIn() {
     return this.sell_in;

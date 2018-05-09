@@ -31,5 +31,19 @@ describe('Gilded Rose', function() {
     expect(item.quality).toEqual(80);
   });
 
+  it('should update Aged Brie', function() {
+    let item = new AgedBrie('Aged Brie', 2, 0);
+    item.update();
+    expect(item.sell_in).toEqual(1);
+    expect(item.quality).toEqual(1);
+
+    item.update();
+    expect(item.sell_in).toEqual(0);
+    expect(item.quality).toEqual(2);
+
+    item.update();
+    expect(item.sell_in).toEqual(-1);
+    expect(item.quality).toEqual(4);
+  })
   // TODO: Add more tests for the rest of the items
 });
