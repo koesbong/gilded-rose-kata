@@ -54,6 +54,8 @@ class Conjured extends BaseItem {
 
 class AgedBrie extends BaseItem {
   qualityDegradeFactor() {
+    // TODO: clarify if 0 is the expiration day
+    // will need to be >= if 0 if that is the case
     if (this.sell_in > 0) {
       return -1;
     }
@@ -71,6 +73,9 @@ class BackstagePasses extends BaseItem {
     if (this.sell_in > 5) {
       return -2;
     }
+
+    // TODO: clarify if 0 is the day of or after concert has happened
+    // will need to be >= if 0 is the day of
     if (this.sell_in > 0) {
       return -3;
     }
