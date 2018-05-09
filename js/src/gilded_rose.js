@@ -9,73 +9,78 @@ function Item(name, sell_in, quality) {
 
 class BaseItem extends Item {
   update() {
+    this.getDegradeFactor();
     this.updateQuality();
     this.updateSellIn();
   }
 
   updateQuality() {
-    let quality;
+    let quality = this.quality - this.degradeFactor;
 
-    if (this.sell_in > 0) {
-      quality = this.quality - 1;
-    } else {
-      quality = this.quality - 2;
+    if (quality < 0) {
+      quality = 0;
     }
 
-    if (quality >= 0) {
-      this.quality = quality;
+    if (quality > 50) {
+      quality = 50;
     }
+
+    this.quality = quality;
   }
 
   updateSellIn() {
     this.sell_in = this.sell_in - 1;
   }
+
+  getDegradeFactor() {
+    this.degradeFactor = 1;
+  }
 }
 
 class Sulfuras extends BaseItem {
-	updateQuality() {}
+  updateQuality() {}
   updateSellIn() {}
 }
 
 class ConjuredManaCake extends BaseItem {
-  updateQuality() {
-    let quality = this.quality - 2;
-
-    if (quality >= 0) {
-      this.quality = quality;
-    }
+  getDegradeFactor() {
+    this.degradeFactor = 2;
   }
 }
 
 class AgedBrie extends BaseItem {
-  updateQuality() {
-    let quality;
+  // updateQuality() {
+  //   let quality;
+  //
+  //   if (this.sell_in > 0) {
+  //     quality = this.quality + 1;
+  //   } else {
+  //     quality = this.quality + 2;
+  //   }
+  //
+  //   if (quality <= 50) {
+  //     this.quality = quality;
+  //   }
+  // }
 
+  getDegradeFactor() {
     if (this.sell_in > 0) {
-      quality = this.quality + 1;
+      this.degradeFactor = -1;
     } else {
-      quality = this.quality + 2;
-    }
-
-    if (quality <= 50) {
-      this.quality = quality;
+      this.degradeFactor = -2;
     }
   }
 }
 
 class BackstagePasses extends BaseItem {
-  updateQuality() {
-    let quality = 0;
-
+  getDegradeFactor() {
     if (this.sell_in > 10) {
-      quality = this.quality + 1;
+      this.degradeFactor = -1;
     } else if (this.sell_in > 5) {
-      quality = this.quality + 2;
+      this.degradeFactor = -2;
     } else if (this.sell_in > 0) {
-      quality = this.quality + 3;
+      this.degradeFactor = -3;
     }
-
-    this.quality = quality > 50 ? 50 : quality;
   }
 }
 

@@ -21,7 +21,7 @@
     items.push(new BackstagePasses('Backstage passes to a TAFKAL80ETC concert', 15, 20));
     items.push(new BackstagePasses('Backstage passes to a TAFKAL80ETC concert', 10, 49));
     items.push(new BackstagePasses('Backstage passes to a TAFKAL80ETC concert', 5, 49));
-    items.push(new ConjuredManaCake('Conjured Mana Cake', 3, 6));
+    items.push(new ConjuredManaCake('Conjured Mana Cake', 3, 5));
 
     var days = 10;
     let store = new GildedRoseStore(items);
@@ -29,7 +29,7 @@
     for (var i = 0; i < days; i++) {
       showHeaderFor(i);
       showItemsFor(i);
-      store.updateItem(store.items);
+      store.updateItem();
     }
 
     function showHeaderFor(day) {
