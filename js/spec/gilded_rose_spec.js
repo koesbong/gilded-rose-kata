@@ -15,11 +15,11 @@ describe('Gilded Rose', function() {
   });
 
   it('should update Conjured Mana Cake', function() {
-    item = new ConjuredManaCake('Conjured Mana Cake', 3, 6);
+    item = new Conjured('Conjured Mana Cake', 3, 6);
     runTest({sellInExpectation: 2, qualityExpectation: 4});
     runTest({sellInExpectation: 1, qualityExpectation: 2});
 
-    item = new ConjuredManaCake('Conjured Mana Cake', 1, 1);
+    item = new Conjured('Conjured Mana Cake', 1, 1);
     runTest({sellInExpectation: 0, qualityExpectation: 0});
     runTest({sellInExpectation: -1, qualityExpectation: 0});
   });

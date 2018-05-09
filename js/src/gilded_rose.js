@@ -46,7 +46,7 @@ class Sulfuras extends BaseItem {
   }
 }
 
-class ConjuredManaCake extends BaseItem {
+class Conjured extends BaseItem {
   qualityDegradeFactor() {
     return 2;
   }
